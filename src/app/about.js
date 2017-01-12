@@ -1,11 +1,12 @@
 var React = require('react');
 import {Link} from 'react-router'; //es2015 syntax
+//const slug = '/react-sass-template/';
 //create component
 var About = React.createClass({
     render: function() {
         return (
             <div>
-                <Link to={'/react-playground/'}>Back to My List</Link>
+                <Link to={'/'}>Back to My List</Link>
                 <h2>All about this app</h2>
                 <p>Lorem ipsum dolor sit, consectetur adipiscing elit. Aenean sed nisl erat. Sed eu tellus molestie risus consequat imperdiet non at dui. Donec feugiat libero lectus, non pellentesque diam gravida quis. Suspendisse sem sem, tincidunt sed velit eu, iaculis ullamcorper ligula. Nullam quam nisl, consequat sit amet leo non, faucibus ultricies nisl.</p>
                 <hr/>

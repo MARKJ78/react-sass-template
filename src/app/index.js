@@ -2,10 +2,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {Router, Route, browserHistory, Link} from 'react-router'; //es2015 syntax
 require('../css/index.scss');
+var slug = "/react-sass-template/";
 
 //module requires
-var TodoItem = require('./todoitem');
-var AddItem = require('./additem');
+var Comp1 = require('./comp1');
 var About = require('./about');
 //Page routing
 var App = React.createClass({
@@ -13,51 +13,28 @@ var App = React.createClass({
         return (
             <Router history={browserHistory}>
                 <Route path={'/'} component={TodoComponent}></Route>{/* home Route for dev env*/}
-                <Route path={'/react-playground/'} component={TodoComponent}></Route>{/* home Route for gh-pages*/}
+                <Route path={'/about'} component={About}></Route>
+                <Route path={slug} component={TodoComponent}></Route>{/* home Route for gh-pages*/}
             </Router>
         );
     }
 })
 //component
 var TodoComponent = React.createClass({
-    getInitialState: function() {
-        return {
-            todos: [
-                'ring by the 17th', 'go for car', 'exersise', 'clean bike'
-            ],
-            age: 40
-        }
-    }, //getInitialState
-
     render: function() {
-        var todos = this.state.todos; //Load the data from todo's
-        todos = todos.map(function(item, index) { //iterate todo array
-            return (<TodoItem item={item} key={index} onDelete={this.onDelete}/>);
-        }.bind(this)) //cycle through todo's and create li's
         return (
             <div id="todo-list">
                 <Link to={'/about'}>About This App</Link>
-                <p>Things to do before you're {this.state.age}...</p>
-                <ul>
-                    {todos}
-                </ul>
-                <AddItem onAdd={this.onAdd}/>
+                <h1>Helo World!</h1>
+                <p>The index loaded.</p>
+                <Comp1/>
+                <p>Go ahead... start your build....</p>
+                <img src={require("../img/hello.jpg")}/>
             </div>
         );
     }, //render
 
     //custom functions
-    onDelete: function(item) {
-        var updatedTodos = this.state.todos.filter(function(val, index) {
-            return item !== val;
-        });
-        this.setState({todos: updatedTodos});
-    }, //onDelete
-    onAdd: function(item) {
-        var updatedTodos = this.state.todos;
-        updatedTodos.push(item);
-        this.setState({todos: updatedTodos})
-    }, //onAdd
 
     /*//lifecycle functions
     componentWillMount: function() {
@@ -74,4 +51,4 @@ var TodoComponent = React.createClass({
 
 //insert into html page
 ReactDOM.render(
-    <App/>, document.getElementById('todo-wrapper'));
+    <App/>, document.getElementById('app-wrapper'));

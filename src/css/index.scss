@@ -4,7 +4,9 @@ body {
   font-family: tahoma;
 }
 
-#todo-wrapper {
+
+
+#app-wrapper {
   width: 80%;
   margin: 0 auto;
   background: #fff;
@@ -20,7 +22,7 @@ body {
   }
 }
 
-#todo-list ul {
-  list-style-type: none;
-  padding: 0;
+img{
+  max-width: 100%;
+  margin: auto;
 }

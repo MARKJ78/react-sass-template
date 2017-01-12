@@ -1,13 +1,15 @@
 const path = require('path'); //npm init includes 'path' module
 const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+var imageWebpackLoader = require('image-webpack-loader');
+
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: path.resolve(__dirname, 'src') + '/app/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist') + '/app',
-        filename: 'bundle.js',
-        publicPath: '/app/'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index_bundle.js'
     },
     module: {
         loaders: [
@@ -23,8 +25,29 @@ module.exports = {
                 test: /\.scss$/,
                 include: path.resolve(__dirname, 'src'),
                 loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+            }, {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: ['file?hash=sha512&digest=hex&name=[hash].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']
             }
         ]
+    },
+    imageWebpackLoader: {
+        mozjpeg: {
+            quality: 40
+        },
+        pngquant: {
+            quality: "65-90",
+            speed: 4
+        },
+        svgo: {
+            plugins: [
+                {
+                    removeViewBox: false
+                }, {
+                    removeEmptyAttrs: false
+                }
+            ]
+        }
     },
 
     plugins: [
@@ -33,11 +56,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new CopyWebpackPlugin([
-            {
-                from: 'src/index.html',
-                to: '../index.html'
-            }
-        ])
+        new HtmlWebpackPlugin({title: 'home page', template: './src/index.ejs'}),
+        new ScriptExtHtmlWebpackPlugin({defaultAttribute: 'async'})
     ]
 };
