@@ -1,20 +1,21 @@
-REACT APP TEMPLATE With SASS
+#Dev build in react/es6/sass with minified, prefixed production build via webpack.
 
-//initialise
-npm init
+##Then automatically deploy prod ./dist to gh-pages branch 
 
-//install react
-npm install react react-dom --save
+To use this template,
 
-//install BABEL w/ presets
-npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
+#Download or clone this repo.
 
-//install webpack with dev server
-npm install webpack webpack-dev-server --save-dev
+git clone https://github.com/MARKJ78/react-sass-template.git <NEW APP NAME>
 
-//install css / sass loaders
-npm install node-sass sass-loader css-loader style-loader --save-dev
+set up env.
 
-//scripts for package json
-"start": "npm run build",
-"build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --port 1234"
+git init
+git add .
+git commit -m "init"
+git remote add origin <URL>
+git remote -v
+git push otigin master
+
+
+npm install
